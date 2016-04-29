@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="/js/module.js"></script>
+    <script src="/js/controllers.js"></script>
+    <script src="/js/services.js"></script>
+
+</head>
+
+<body ng-app='bankApp' ng-controller='mainCtrl'>
+    <div class="container">
+        <h1 class="text-center">Bank App!</h1>
+
+
+        <form ng-submit="CreateBank()">
+        <div class="form-group">
+            <label for="newBankdesc">Description: </label>
+            <input type="text" class="form-control" ng-model="newBank.desc" placeholder="Payment from 고은" required>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input type="number" step="0.01" min=0 class="form-control" id="amount" placeholder="0.00" ng-model="transaction.amount">
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon">Date</span>
+                <input type="date" class="form-control" id="date" ng-model="transaction.date">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-danger" ng-click="saveDebit()">Save Debit</button>
+        <button type="submit" class="btn btn-success" ng-click="saveCredit()">Save Credit</button>
+        </form>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Debit</th>
+              <th>Credit</th>
+              <th>Running Balance</th>
+              <th>Edit/Delete</th>
+            </tr>
+          </thead>
+          <tbody class='bankList'>
+            <tr ng-repeat='bank in banks'>
+              <td>{{bank.id}}</td>
+              <td>{{bank.date}}</td>
+              <td>{{bank.desc}}</td>
+              <td>{{bank.amountDeb}}</td>
+              <td>{{bank.amountCred}}</td>
+              <td>{{bank.runningBalance}}</td>
+              <td>
+                <td>
+                  <button type="button" class="btn btn-default btn-sm delete" ng-click='removeBank(bank)'>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                  </button>
+                </td>
+              </td>
+            </tr>
