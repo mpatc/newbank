@@ -21,6 +21,7 @@ app.controller('mainCtrl', function($scope, Bank) {
   $scope.createBank = () => {
     Bank.create($scope.newBank)
     .then(res => {
+      console.log("res from createBank: ", res)
       var bank = res.data;
       $scope.banks.push(bank);
       $scope.newBank = null;

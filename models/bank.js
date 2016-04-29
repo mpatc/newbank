@@ -5,7 +5,7 @@ var moment = require('moment');
 
 db.run(`CREATE TABLE IF NOT EXISTS banks (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
-          type TEXT,
+          type BOOLEAN,
           date DATETIME,
           desc TEXT,
           amountDeb INTEGER,
